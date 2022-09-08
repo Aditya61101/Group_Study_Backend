@@ -10,7 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(errorHandler);
-app.use("/api/upcoming_sessions", require("./routes/upcoming_sessions_routes"));
+
+app.use("/api/upcoming_sessions", require("./routes/upcomingSessionsRoute"));
+
+app.use("/api/user", require("./routes/userRoute"));
+
 app.listen(port, () => {
   console.log(`server started on ${port}`);
 });
