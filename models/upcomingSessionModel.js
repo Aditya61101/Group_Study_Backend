@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const upcomingSessionsSchema = mongoose.Schema({
-  user:{
-    type:mongoose.Schema.Types.ObjectId,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref:'User'
+    ref: "User",
   },
   title: {
     type: String,
@@ -15,15 +15,23 @@ const upcomingSessionsSchema = mongoose.Schema({
   },
   startDate: {
     type: Date,
-    required: [true, "Please mention start Date"],
+    required: [true, "Please mention a start Date"],
+  },
+  startTime: {
+    type: String,
+    required: [true, "Please mention a start time."],
   },
   endDate: {
     type: Date,
-    required: [true, "Please mention end Date"],
+    required: [true, "Please mention a end Date"],
+  },
+  endTime: {
+    type: String,
+    required: [true, "Please mention a end time"],
   },
   maxStudents: {
     type: Number,
-    min: 0,
+    min: 1,
     max: 70,
     required: [true, "Please mention maximum number of students."],
   },
