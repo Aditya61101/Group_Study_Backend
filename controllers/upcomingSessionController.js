@@ -13,6 +13,16 @@ const readUpcomingSessions = asyncHandler(async (req, res) => {
   }
 });
 
+const readUpcomingSession = asyncHandler(async(req,res) => {
+  let success=false;
+  const session = await UpcomingSessions.findById(req.params.id);
+  if (session) {
+    success=true;
+    res.status(201).json({success,session});
+  }else{
+    res.status(400).json({success,error:"Session couldn't be found!"});
+  }
+})
 const createUpcomingSession = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
   if(!user){
@@ -86,6 +96,7 @@ const deleteUpcomingSession = asyncHandler(async (req, res) => {
 });
 module.exports = {
   createUpcomingSession,
+  readUpcomingSession,
   readUpcomingSessions,
   updateUpcomingSession,
   deleteUpcomingSession,
